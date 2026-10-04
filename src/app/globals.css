@@ -1,26 +1,33 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-mimu-burgundy: #850D2B;
+  --color-mimu-burgundy-dark: #5F0A20;
+  --color-mimu-burgundy-light: #A52140;
+
+  --color-mimu-champagne: #B68B4C;
+  --color-mimu-champagne-light: #D6BC8B;
+
+  --color-mimu-ivory: #FBF7EF;
+  --color-mimu-cream: #F5EFE4;
+  --color-mimu-pearl: #FFFCF7;
+
+  --color-mimu-obsidian: #21191A;
+  --color-mimu-text: #292323;
+  --color-mimu-muted: #77706B;
+  --color-mimu-border: #E5DCCE;
+  --color-mimu-silver: #C8C9CC;
+
+  --color-mimu-white: #FFFFFF;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-cormorant), ui-serif, Georgia, serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--color-mimu-ivory);
+    color: var(--color-mimu-text);
+    font-family: var(--font-sans);
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
