@@ -2,16 +2,18 @@
 
 import React from 'react';
 import { useStore } from '@/context/StoreContext';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { demoProducts } from '@/data/demo-products';
 import { ProductCard } from '@/components/product/ProductCard';
 import { JewelleryCategorySwitcher } from '@/components/ui/JewelleryCategorySwitcher';
+
+const easeOutExpo: [number, number, number, number] = [0.16, 1, 0.3, 1];
 
 export function CategoryHero() {
   const { category } = useStore();
   const products = demoProducts.filter(p => p.category === category);
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
@@ -21,9 +23,9 @@ export function CategoryHero() {
     }
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } }
+    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: easeOutExpo } }
   };
 
   return (
