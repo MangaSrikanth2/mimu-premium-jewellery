@@ -3,8 +3,14 @@ import React from 'react';
 
 export default async function AdminDashboard() {
   // Demo fetch to showcase the Prisma database integration
-  const productsCount = await prisma.product.count();
-  const ordersCount = await prisma.order.count();
+  let productsCount = 0;
+  let ordersCount = 0;
+  try {
+    productsCount = await prisma.product.count();
+    ordersCount = await prisma.order.count();
+  } catch (error) {
+    console.error('Failed to fetch admin stats:', error);
+  }
 
   return (
     <div className="min-h-screen bg-mimu-pearl text-mimu-text flex">
