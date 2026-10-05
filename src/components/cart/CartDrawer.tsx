@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { useRouter } from 'next/navigation';
 import { useStore } from '@/context/StoreContext';
 import { X, Minus, Plus } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -12,6 +13,7 @@ interface CartDrawerProps {
 }
 
 export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
+  const router = useRouter();
   const { cart, removeFromCart, updateQuantity } = useStore();
 
   const subtotal = cart.reduce((acc, item) => acc + item.product.price * item.quantity, 0);
@@ -98,7 +100,13 @@ export function CartDrawer({ isOpen, onClose }: CartDrawerProps) {
                   <span>Subtotal</span>
                   <span>{new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 0 }).format(subtotal)}</span>
                 </div>
-                <button className="w-full py-4 bg-mimu-burgundy text-mimu-white text-xs uppercase tracking-widest font-medium hover:bg-mimu-burgundy-dark transition-colors">
+                <button
+                  onClick={() => {
+                    onClose();
+                    router.push('/checkout');
+                  }}
+                  className="w-full py-4 bg-mimu-burgundy text-mimu-white text-xs uppercase tracking-widest font-medium hover:bg-mimu-burgundy-dark transition-colors"
+                >
                   Proceed to Checkout
                 </button>
               </div>

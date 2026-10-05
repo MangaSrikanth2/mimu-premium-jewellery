@@ -15,6 +15,9 @@ export default function AboutPage() {
             alt="MIMU Premium Jewellery — About"
             fill
             priority
+            loading="eager"
+            fetchPriority="high"
+            sizes="100vw"
             className="object-cover"
           />
           <div className="absolute inset-0 bg-mimu-obsidian/50" />

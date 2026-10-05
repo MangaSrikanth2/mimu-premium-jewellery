@@ -28,8 +28,26 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    let cartData: CartItem[] = [];
+    let wishlistData: string[] = [];
+    try {
+      const storedCart = localStorage.getItem('mimu-cart');
+      const storedWishlist = localStorage.getItem('mimu-wishlist');
+      if (storedCart) {
+        cartData = JSON.parse(storedCart);
+      }
+      if (storedWishlist) {
+        wishlistData = JSON.parse(storedWishlist);
+      }
+    } catch (error) {
+      console.error('Failed to load cart/wishlist from storage', error);
+    }
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setCart(cartData);
+     
+    setWishlist(wishlistData);
+     
     setMounted(true);
-    // Load from local storage could go here
   }, []);
 
   const addToCart = (product: Product) => {
@@ -66,6 +84,24 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
         : [...prev, productId]
     );
   };
+
+  useEffect(() => {
+    if (!mounted) return;
+    try {
+      localStorage.setItem('mimu-cart', JSON.stringify(cart));
+    } catch (error) {
+      console.error('Failed to save cart to storage', error);
+    }
+  }, [cart, mounted]);
+
+  useEffect(() => {
+    if (!mounted) return;
+    try {
+      localStorage.setItem('mimu-wishlist', JSON.stringify(wishlist));
+    } catch (error) {
+      console.error('Failed to save wishlist to storage', error);
+    }
+  }, [wishlist, mounted]);
 
   if (!mounted) return null;
 

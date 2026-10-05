@@ -17,11 +17,21 @@ export default function Home() {
         {/* Background Image */}
         <div className="absolute inset-0">
           <Image
-            src={category === 'gold' ? '/images/Gold.jpeg' : '/images/Silver.jpeg'}
+            src="/images/Gold.jpeg"
             alt="MIMU Premium Jewellery"
             fill
             priority
-            className="object-cover transition-opacity duration-1000"
+            loading="eager"
+            fetchPriority="high"
+            sizes="100vw"
+            className={`object-cover transition-opacity duration-1000 ${category === 'gold' ? 'opacity-100' : 'opacity-0'}`}
+          />
+          <Image
+            src="/images/Silver.jpeg"
+            alt="MIMU Premium Jewellery"
+            fill
+            sizes="100vw"
+            className={`object-cover transition-opacity duration-1000 ${category === 'silver' ? 'opacity-100' : 'opacity-0'}`}
           />
           <div className="absolute inset-0 bg-mimu-obsidian/60" />
         </div>

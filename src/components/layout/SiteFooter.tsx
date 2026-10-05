@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { MimuLogo } from '@/components/ui/MimuLogo';
 
 export function SiteFooter() {
   return (
@@ -10,7 +11,9 @@ export function SiteFooter() {
         
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-20">
           <div className="col-span-1 md:col-span-2">
-            <h2 className="font-serif text-3xl font-bold tracking-widest text-mimu-champagne mb-6">MIMU</h2>
+            <div className="mb-6">
+              <MimuLogo linked={false} variant="light" imageClassName="w-[140px] md:w-[160px]" />
+            </div>
             <p className="text-sm text-mimu-muted max-w-sm mb-6">
               MIMU Premium Jewellery, curated by Milan Sanjivji Mundada. 
               An expression of modern elegance — jewellery curated for moments that deserve to endure.

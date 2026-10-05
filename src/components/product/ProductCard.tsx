@@ -8,8 +8,7 @@ import { useStore } from '@/context/StoreContext';
 import { Heart, ShoppingBag } from 'lucide-react';
 
 export function ProductCard({ product }: { product: Product }) {
-  const { category, toggleWishlist, wishlist, addToCart } = useStore();
-  const isGold = product.category === 'gold';
+  const { toggleWishlist, wishlist, addToCart } = useStore();
   const isWishlisted = wishlist.includes(product.id);
 
   return (
